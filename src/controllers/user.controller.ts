@@ -26,6 +26,17 @@ export class UserController {
         }
     }
 
+    handleGetUsers(req: IncomingMessage, res: ServerResponse): void {
+        try {
+            const result = this.UserService.getUsers();
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(result));
+        } catch (err) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Internal Server Error' }));
+        }
+    }
+
     handleCreateUser(req: IncomingMessage, res: ServerResponse): void {
         let body = '';
         req.on('data', chunk => {
@@ -70,7 +81,7 @@ export class UserController {
         });
 
         req.on('end', () => {
-            const userCredentials: Omit<User, 'id' | 'creationTimestamp' | 'modificationTimestamp' | 'status'> = JSON.parse(body);
+            const userCredentials = JSON.parse(body);
 
             try {
                 const user = this.UserService.updateUser(userId, userCredentials);

@@ -7,9 +7,12 @@ export class UserService {
     usersDirPath: string = path.join(__dirname, '..', 'DB', 'users.json');
 
     constructor() {
-        this.getUsers().then((users) => {
+        this.readUsers().then((users) => {
             this.users = users || [];
         });
+    }
+    private async readUsers(): Promise<User[]>{
+        return await this.getUsers();
     }
 
     async getUsers(): Promise<User[]> {
@@ -42,21 +45,15 @@ export class UserService {
         return {statusCode: 200, message: "Success", user};
     }
 
-    createUser(userCredentials: { hobbies: Array<string>; id: string; age: number; username: string }): {
-        statusCode: number;
-        message: string;
-        user?: User
-    } {
-        if (!userCredentials.username || !userCredentials.age) {
-            return {statusCode: 400, message: "Request body does not contain required fields"};
-        }
-        const user: User = {
-            ...userCredentials,
+    createUser(userCredentials: User): User{
+        let user: User = {
+            ... userCredentials,
             id: this.generateUserId(),
-        };
-        this.users.push(user);
-        this.writeFile(JSON.stringify({users: this.users}));
-        return {statusCode: 201, message: "User created successfully", user};
+        }
+
+        this.users.push(user)
+        this.writeFile(JSON.stringify({users: this.users}))
+        return user;
     }
 
     updateUser(id: string, userCredentials: Omit<User, 'id' | 'creationTimestamp' | 'modificationTimestamp' | 'status'>): { statusCode: number; message: string; user?: User } {

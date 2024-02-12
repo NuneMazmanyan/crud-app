@@ -2,7 +2,7 @@ import http from 'http';
 import handleRequest from './router/router';
 
 const server: http.Server = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
-    if (req.method === 'GET' && req.url?.startsWith('/users')) {
+    if (req.method) {
         handleRequest(req, res);
     } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
