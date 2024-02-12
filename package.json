@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --silent",
     "test:verbose": "jest",
-    "start:dev": "npx nodemon ./dist/services/app.js",
-    "start:prod": "npm run build && node ./dist/services/app.js",
+    "start:dev": "tsc && node dist/app.js",
+    "start:prod": "tsc && node dist/app.js",
     "build": "tsc"
   },
   "author": "",
