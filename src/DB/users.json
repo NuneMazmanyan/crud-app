@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "Jane",
+      "age": "24",
+      "id": "as4556jdg90923",
+      "hobbies": ["cooking", "hiking"]
+    },
+    {
+      "username": "John",
+      "age": "47",
+      "id": "234bhj56wwer",
+      "hobbies": ["sport", "gardening"]
+    },
+    {
+      "name": "Lia",
+      "age": "46",
+      "id": "bkjf80923ksdh",
+      "hobbies": ["cooking", "writing"]
+    },
+    {
+      "name": "Liam",
+      "age": "18",
+      "id": "gsjkgw879e,ngf",
+      "hobbies": ["piano", "hiking"]
+    }
+  ]
+}
