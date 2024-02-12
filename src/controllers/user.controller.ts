@@ -10,7 +10,6 @@ export class UserController {
         const urlParts = req.url ? req.url.split('/') : [];
         const userId = urlParts[urlParts.length - 1];
 
-        // Check if userId is a valid UUID
         if (!userId || !validate(userId)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Invalid user ID' }));
@@ -59,7 +58,6 @@ export class UserController {
         const urlParts = req.url ? req.url.split('/') : [];
         const userId = urlParts[urlParts.length - 1];
 
-        // Check if userId is a valid UUID
         if (!userId || !validate(userId)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Invalid user ID' }));
@@ -88,7 +86,6 @@ export class UserController {
         const urlParts = req.url ? req.url.split('/') : [];
         const userId = urlParts[urlParts.length - 1];
 
-        // Check if userId is a valid UUID
         if (!userId || !validate(userId)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Invalid user ID' }));
