@@ -30,20 +30,6 @@ export class UserService {
         });
     }
 
-    private async readUsers(): Promise<User[]> {
-        let fileContent: User[] = [];
-        try {
-            const data = await fs.promises.readFile(this.usersDirPath);
-            fileContent = JSON.parse(data.toString()).users;
-        } catch (err) {
-            const error = err as NodeJS.ErrnoException;
-            if (error.code !== 'ENOENT') {
-                throw err;
-            }
-        }
-        return fileContent;
-    }
-
     private generateUserId(): string {
         return Math.floor(Math.random() * 100000000).toString();
     }
